@@ -15,8 +15,5 @@ make -C linux-6.17 O=$PWD/linux-6.17_build \
     allnoconfig
 make -C linux-6.17 O=$PWD/linux-6.17_build -j$(nproc)
 make -C linux-6.17 O=$PWD/linux-6.17_build scripts_gdb
-
-# build nolibc sysroot
-mkdir nolibc
 make -C linux-6.17/tools/include/nolibc O=$PWD/linux_6.17_build \
     headers_standalone
