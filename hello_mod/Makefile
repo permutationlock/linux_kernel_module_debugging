@@ -1,4 +1,4 @@
-.PHONY: all clean
+.PHONY: all clean run run-halted
 
 all: hello.ko
 
@@ -25,12 +25,12 @@ initramfs.cpio: sysroot
 
 run: initramfs.cpio
 	qemu-system-x86_64 --enable-kvm -nographic -no-reboot -s \
-	-kernel ../linux-6.17_build/arch/x86/boot/bzImage \
-	-initrd initramfs.cpio \
-	-append "HOST=x86_64 console=ttyS0"
+		-kernel ../linux-6.17_build/arch/x86/boot/bzImage \
+		-initrd initramfs.cpio \
+		-append "HOST=x86_64 console=ttyS0"
 
 run-halted: initramfs.cpio
 	qemu-system-x86_64 --enable-kvm -nographic -no-reboot -s -S \
-	-kernel ../linux-6.17_build/arch/x86/boot/bzImage \
-	-initrd initramfs.cpio \
-	-append "HOST=x86_64 console=ttyS0"
+		-kernel ../linux-6.17_build/arch/x86/boot/bzImage \
+		-initrd initramfs.cpio \
+		-append "HOST=x86_64 console=ttyS0"
