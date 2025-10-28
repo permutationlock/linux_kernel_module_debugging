@@ -1,5 +1,5 @@
 CC:=gcc
-CFLAGS:=-I../nolibc/sysroot/include -fno-stack-protector -nostdlib -nostdinc -static
+CFLAGS:=-I../linux-6.17_build/sysroot/include -fno-stack-protector -nostdlib -nostdinc -static
 
 .PHONY: all clean run
 
