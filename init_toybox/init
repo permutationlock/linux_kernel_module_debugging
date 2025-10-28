@@ -1,0 +1,15 @@
+#!/bin/sh
+
+export HOME=/home PATH=/bin
+mount -t proc proc proc
+mount -t sysfs sys sys
+mount -t devtmpfs dev dev
+ln -sf /proc/self/fd/0 /dev/stdin
+ln -sf /proc/self/fd/1 /dev/stdout
+ln -sf /proc/self/fd/2 /dev/stderr
+mkdir -p dev/shm && chmod +t /dev/shm
+mkdir -p dev/pts && mount -t devpts dev/pts dev/pts
+sleep 1
+echo "Welcome to sh!"
+setsid -c /bin/sh <>/dev/ttyS0 >&0 2>&1
+reboot -f
