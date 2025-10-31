@@ -75,14 +75,17 @@ static ssize_t hello_read(struct file *file, char __user *buf, size_t len,
 			  loff_t *offset)
 {
 	const char msg[] = "Hello, World!\n";
-	const char *msg_off = msg + *offset;
-	size_t msg_len = min(len, strlen(msg_off));
+	const char *msg_off;
+	size_t msg_len;
 	unsigned long res;
 
 	if (*offset >= sizeof(msg)) {
 		*offset = 0;
 		return 0;
 	}
+
+	msg_off = msg + *offset;
+	msg_len = min(len, strlen(msg_off));
 
 	res = copy_to_user(buf, msg_off, msg_len);
 
